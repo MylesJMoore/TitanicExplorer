@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titanic Explorer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        table {
+            width: 100%;
+        }
+        th, td {
+            text-align: center;  /* Center align all text */
+        }
+    </style>
+</head>
+<body class="container mt-4">
+    <h1 class="text-center">Titanic Explorer</h1>
+    <p class="text-center">Survival Rate: <strong>{{ survival_rate }}%</strong></p>
+
+    <h2>Dataset Summary</h2>
+    <!-- Filter Form -->
+    <form method="GET" action="/">
+        <div class="form-group">
+            <label for="pclass"><strong>Passenger Class:</strong></label>
+            <select class="form-control" id="pclass" name="pclass">
+                <option value="" {% if not pclass %}selected{% endif %}>All</option>
+                <option value="1" {% if pclass == '1' %}selected{% endif %}>1st</option>
+                <option value="2" {% if pclass == '2' %}selected{% endif %}>2nd</option>
+                <option value="3" {% if pclass == '3' %}selected{% endif %}>3rd</option>
+            </select>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="survived"><strong>Survival Status:</strong></label>
+            <select class="form-control" id="survived" name="survived">
+                <option value="" {% if not survived %}selected{% endif %}>All</option>
+                <option value="1" {% if survived == '1' %}selected{% endif %}>Survived</option>
+                <option value="0" {% if survived == '0' %}selected{% endif %}>Not Survived</option>
+            </select>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="gender"><strong>Gender:</strong></label>
+            <select class="form-control" id="gender" name="gender">
+                <option value="" {% if not gender %}selected{% endif %}>All</option>
+                <option value="male" {% if gender == 'male' %}selected{% endif %}>Male</option>
+                <option value="female" {% if gender == 'female' %}selected{% endif %}>Female</option>
+            </select>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Filter</button>
+    </form>
+    <hr>
+
+    <!-- Render Summary Table -->
+    {{ summary|safe }}
+
+    <!-- Display Graph -->
+    <img src="data:image/png;base64,{{ img_base64 }}" alt="Age Distribution Chart">
+</body>
+</html>
