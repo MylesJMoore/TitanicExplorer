@@ -12,7 +12,7 @@ A Flask web application that explores and visualizes the Titanic dataset, includ
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/MylesJMoore/TitanicExplorer.git
    cd titanic_explorer
    ```
 2. Create and activate a virtual environment:
